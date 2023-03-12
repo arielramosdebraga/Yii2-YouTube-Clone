@@ -1,13 +1,7 @@
 <?php
-
-/** @var yii\web\View $this */
-/** @var string $content */
-
-use backend\assets\AppAsset;
-use yii\helpers\Html;
-
-AppAsset::register($this);
+use yii\bootstrap5\Html;
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
@@ -21,13 +15,15 @@ AppAsset::register($this);
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<main role="main">
-    <div class="container">
-        <?= $content ?>
+<div class="wrap h-100 d-flex flex-column">
+    <div class="wrap h-100 d-flex flex-column">
+        <?php echo $this->render('_header') ?>
+
+        <?php echo $content ?>
     </div>
-</main>
+</div>
 
 <?php $this->endBody() ?>
 </body>
 </html>
-<?php $this->endPage();
+<?php $this->endPage() ?>
