@@ -66,3 +66,9 @@ aside .nav-pills .nav-link.active {
 .comment-wrapper .dropdown-toggle::after {
     content: none;
 }
+
+.thumb {
+    width: 400px !important;
+    height: 200px !important;
+    background-position: center;
+}
