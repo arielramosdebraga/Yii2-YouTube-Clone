@@ -1,7 +1,6 @@
 <?php
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
-use yii\bootstrap5\Html;
 ?>
 
 <header>
@@ -23,7 +22,6 @@ use yii\bootstrap5\Html;
         $menuItems[] = [
             'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
             'url' => ['/site/logout'],
-            'options' => ['class' => ''],
             'linkOptions' => [
                 'data-method' => 'post'
             ]

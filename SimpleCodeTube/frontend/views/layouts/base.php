@@ -1,5 +1,8 @@
 <?php
-use yii\bootstrap5\Html;
+use frontend\assets\AppAsset;
+use yii\helpers\Html;
+
+AppAsset::register($this);
 ?>
 
 <?php $this->beginPage() ?>

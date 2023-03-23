@@ -8,7 +8,7 @@ use yii\helpers\Url;
 
 <div class="d-flex">
   <div class="flex-shrink-0">
-    <a href="<?= Url::to(['/video/update', 'video_id' => $model->video_id]) ?>">
+    <a href="<?= Url::to(['/video/update', 'id' => $model->video_id]) ?>">
         <img src="<?= $model->getThumbnailLink() ?>" alt="<?= $model->title ?>">
     </a>
   </div>

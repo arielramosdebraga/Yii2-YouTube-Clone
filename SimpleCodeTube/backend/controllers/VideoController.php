@@ -24,6 +24,15 @@ class VideoController extends Controller
         return array_merge(
             parent::behaviors(),
             [
+                'access' => [
+                    'class' => AccessControl::class,
+                    'rules' => [
+                        [
+                            'allow' => true,
+                            'roles' => ['@']
+                        ]
+                    ]
+                ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -66,10 +75,10 @@ class VideoController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($video_id)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($video_id),
+            'model' => $this->findModel($id),
         ]);
     }
 
@@ -85,7 +94,7 @@ class VideoController extends Controller
         $model->video = UploadedFile::getInstanceByName('video');
 
         if (Yii::$app->request->isPost && $model->save()) {
-            return $this->redirect(['update', 'video_id' => $model->video_id]);
+            return $this->redirect(['update', 'id' => $model->video_id]);
         }
 
         return $this->render('create', [
@@ -101,9 +110,9 @@ class VideoController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($video_id)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($video_id);
+        $model = $this->findModel($id);
 
         $model->thumbnail = UploadedFile::getInstanceByName('thumbnail');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -122,9 +131,9 @@ class VideoController extends Controller
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($video_id)
+    public function actionDelete($id)
     {
-        $this->findModel($video_id)->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
@@ -136,9 +145,9 @@ class VideoController extends Controller
      * @return Video the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($video_id)
+    protected function findModel($id)
     {
-        if (($model = Video::findOne(['video_id' => $video_id])) !== null) {
+        if (($model = Video::findOne(['video_id' => $id])) !== null) {
             return $model;
         }
 
