@@ -1,13 +1,10 @@
 <?php
 
-use common\models\Video;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
-/** @var yii\web\View $this */
-/** @var yii\data\ActiveDataProvider $dataProvider */
+/* @var $this yii\web\View */
+/* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Videos';
 $this->params['breadcrumbs'][] = $this->title;
@@ -25,22 +22,34 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'video_id',
-            'title',
-            'description:ntext',
-            'tags',
-            'status',
+            [
+                'attribute' => 'title',
+                'content' => function ($model) {
+                    return $this->render('_video_item', ['model' => $model]);
+                }
+            ],
+            [
+                'attribute' => 'status',
+                'content' => function ($model) {
+                    return $model->getStatusLabels()[$model->status];
+                }
+            ],
             //'has_thumbnail',
             //'video_name',
-            //'created_at',
-            //'updated_at',
+            'created_at:datetime',
+            'updated_at:datetime',
             //'created_by',
+
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Video $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'video_id' => $model->video_id]);
-                 }
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'delete' => function ($url) {
+                        return Html::a('Delete', $url, [
+                            'data-method' => 'post',
+                            'data-confirm' => 'Are you sure?'
+                        ]);
+                    }
+                ]
             ],
         ],
     ]); ?>

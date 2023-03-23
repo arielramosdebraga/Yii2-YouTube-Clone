@@ -53,6 +53,12 @@ aside .nav-pills .nav-link.active {
     opacity: 0;
 }
 
+.bootstrap-tagsinput .tag {
+    background-color: #5bc0de;
+    padding: 0 0.2rem 0.2rem 0.2rem;
+    border-radius: 5px;
+  }
+
 .comment-wrapper {
     flex: 1;
 }

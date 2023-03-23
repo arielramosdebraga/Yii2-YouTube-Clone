@@ -107,7 +107,7 @@ class VideoController extends Controller
 
         $model->thumbnail = UploadedFile::getInstanceByName('thumbnail');
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['update', 'video_id' => $model->video_id]);
+            return $this->redirect(['update', 'id' => $model->video_id]);
         }
 
         return $this->render('update', [
