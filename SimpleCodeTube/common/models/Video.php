@@ -117,6 +117,32 @@ class Video extends \yii\db\ActiveRecord
     }
 
     /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getViews()
+    {
+        return $this->hasMany(VideoView::class, ['video_id' => 'video_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLikes()
+    {
+        return $this->hasMany(VideoLike::class, ['video_id' => 'video_id'])
+            ->liked();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDislikes()
+    {
+        return $this->hasMany(VideoLike::class, ['video_id' => 'video_id'])
+            ->disliked();
+    }
+
+    /**
      * {@inheritdoc}
      * @return \common\models\query\VideoQuery the active query used by this AR class.
      */
@@ -172,5 +198,33 @@ class Video extends \yii\db\ActiveRecord
         return $this->has_thumbnail ?
             Yii::$app->params['frontendUrl'] . 'storage/thumbs/' . $this->video_id . '.jpg'
             : '';
+    }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        $videoPath = Yii::getAlias('@frontend/web/storage/videos/' . $this->video_id . '.mp4');
+        unlink($videoPath);
+
+        $thumbnailPath = Yii::getAlias('@frontend/web/storage/thumbs/' . $this->video_id . '.jpg');
+        if (file_exists($thumbnailPath)) {
+            unlink($thumbnailPath);
+        }
+    }
+
+    public function isLikedBy($userId)
+    {
+        return VideoLike::find()
+            ->userIdVideoId($userId, $this->video_id)
+            ->liked()
+            ->one();
+    }
+
+    public function isDislikedBy($userId)
+    {
+        return VideoLike::find()
+            ->userIdVideoId($userId, $this->video_id)
+            ->disliked()
+            ->one();
     }
 }
