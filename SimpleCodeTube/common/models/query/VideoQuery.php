@@ -51,7 +51,13 @@ class VideoQuery extends \yii\db\ActiveQuery
 
     public function byKeyword($keyword)
     {
-        return $this->andWhere("MATCH(title, description, tags)
-        AGAINST (:keyword)", ['keyword' => $keyword]);
+        return $this->andWhere("MATCH(title, description, tags) AGAINST (:keyword)", ['keyword' => $keyword]);
+    }
+
+    public function byLikeKeyword($keyword)
+    {
+        return $this->andWhere("title LIKE ('%$keyword%') OR 
+                                description LIKE ('%$keyword%') OR 
+                                tags LIKE ('%$keyword%')");
     }
 }

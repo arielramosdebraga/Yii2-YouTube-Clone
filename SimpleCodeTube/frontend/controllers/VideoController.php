@@ -121,6 +121,26 @@ class VideoController extends Controller
         ]);
     }
 
+    public function actionSearch($keyword)
+    {
+        $this->layout = 'main';
+        $query = Video::find()
+            ->with('createdBy')
+            ->published()
+            ->latest();
+
+        if ($keyword) {
+            $query->byLikeKeyword($keyword);
+        }
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query
+        ]);
+
+        return $this->render('search', [
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
     protected function findVideo($id)
     {
         $video = Video::findOne($id);
