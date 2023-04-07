@@ -1,8 +1,8 @@
 <?php
 return [
-    'adminEmail' => 'admin@example.com',
-    'supportEmail' => 'support@example.com',
-    'senderEmail' => 'noreply@example.com',
+    'adminEmail' => 'admin@simplecodetube.test',
+    'supportEmail' => 'support@simplecodetube.test',
+    'senderEmail' => 'noreply@simplecodetube.test',
     'senderName' => 'Example.com mailer',
     'user.passwordResetTokenExpire' => 3600,
     'user.passwordMinLength' => 8,

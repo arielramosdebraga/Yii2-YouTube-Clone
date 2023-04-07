@@ -12,16 +12,20 @@ use yii\imagine\Image;
 /**
  * This is the model class for table "{{%video}}".
  *
- * @property string $video_id
- * @property string $title
+ * @property string      $video_id
+ * @property string      $title
  * @property string|null $description
  * @property string|null $tags
- * @property int|null $status
- * @property int|null $has_thumbnail
+ * @property int|null    $status
+ * @property int|null    $has_thumbnail
  * @property string|null $video_name
- * @property int|null $created_at
- * @property int|null $updated_at
- * @property int|null $created_by
+ * @property int|null    $created_at
+ * @property int|null    $updated_at
+ * @property int|null    $created_by
+ *
+ * @property User        $createdBy
+ * @property \common\models\VideoLike[]        $likes
+ * @property \common\models\VideoLike[]        $dislikes
  */
 class Video extends \yii\db\ActiveRecord
 {

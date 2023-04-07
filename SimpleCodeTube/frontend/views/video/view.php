@@ -35,7 +35,7 @@ $this->title = $model->title . ' | ' . Yii::$app->name;
         </div>
         <div>
             <p>
-                <?php //echo \common\helpers\Html::channelLink($model->createdBy) ?>
+                <?php \common\helpers\Html::channelLink($model->createdBy) ?>
             </p>
             <?php echo Html::encode($model->description) ?>
         </div>
