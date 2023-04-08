@@ -72,3 +72,11 @@ aside .nav-pills .nav-link.active {
     height: 200px !important;
     background-position: center;
 }
+
+.embed-responsive-item {
+    width: 100%;
+}
+
+.site-index .card {
+    width: 25%;
+}
