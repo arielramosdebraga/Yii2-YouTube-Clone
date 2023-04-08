@@ -41,7 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <script>
-document.getElementById("videoFile").addEventListener("change", function(event) {
+function submitVideo() {
     document.getElementById("form-upload-video").submit();
+}
+document.getElementById("videoFile").addEventListener("change", function(event) {
+    const myTimeout = setTimeout(submitVideo, 2000);
+    // document.getElementById("form-upload-video").submit();
 });
 </script>
