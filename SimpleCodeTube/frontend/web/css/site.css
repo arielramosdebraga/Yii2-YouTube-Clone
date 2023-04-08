@@ -80,3 +80,7 @@ aside .nav-pills .nav-link.active {
 .comment-item.edit .media-input {
     display: flex;
 }
+
+.embed-responsive-item {
+    width: 100%;
+}
