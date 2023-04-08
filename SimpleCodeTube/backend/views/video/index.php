@@ -20,6 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'pager' => [
+            'class' => \yii\bootstrap5\LinkPager::class,
+        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             [
@@ -42,6 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             [
                 'class' => 'yii\grid\ActionColumn',
+                'template' => '{delete}', /* '{view} {update} {delete}' */
                 'buttons' => [
                     'delete' => function ($url) {
                         return Html::a('Delete', $url, [

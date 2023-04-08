@@ -39,7 +39,10 @@ use yii\web\NotFoundHttpException;
         $channel = $this->findChannel($username);
 
         $dataProvider = new ActiveDataProvider([
-            'query' => Video::find()->creator($channel->id)->published()
+            'query' => Video::find()->creator($channel->id)->published(),
+            'pagination' => [
+                'pageSize' => 5
+            ]
         ]);
 
         return $this->render('view', [

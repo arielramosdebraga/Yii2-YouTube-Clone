@@ -31,7 +31,7 @@ class VideoController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['like', 'dislike'],
+                'only' => ['like', 'dislike', 'history'],
                 'rules' => [
                     [
                         'allow' => true,
@@ -54,6 +54,9 @@ class VideoController extends Controller
         $this->layout = 'main';
         $dataProvider = new ActiveDataProvider([
             'query' => Video::find()->with('createdBy')->published()->latest(),
+            'pagination' => [
+                'pageSize' => 5
+            ]
         ]);
 
         return $this->render('index', [
@@ -141,7 +144,10 @@ class VideoController extends Controller
             $query->byLikeKeyword($keyword);
         }
         $dataProvider = new ActiveDataProvider([
-            'query' => $query
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 5
+            ]
         ]);
 
         return $this->render('search', [
@@ -162,7 +168,10 @@ class VideoController extends Controller
             ->orderBy("vv.max_date DESC");
 
         $dataProvider = new ActiveDataProvider([
-            'query' => $query
+            'query' => $query,
+            'pagination' => [
+                'pageSize' => 5
+            ]
         ]);
 
         return $this->render('history', [

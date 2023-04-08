@@ -23,6 +23,9 @@ $this->title = 'Channel ' . $channel->username . ' | ' . Yii::$app->name;
 
 <?php echo \yii\widgets\ListView::widget([
     'dataProvider' => $dataProvider,
+    'pager' => [
+        'class' => \yii\bootstrap5\LinkPager::class,
+    ],
     'itemView' => '@frontend/views/video/_video_item',
     'layout' => '<div class="d-flex flex-wrap">{items}</div>{pager}',
     'itemOptions' => [

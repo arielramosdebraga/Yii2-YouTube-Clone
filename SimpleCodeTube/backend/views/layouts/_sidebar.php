@@ -11,10 +11,6 @@
         [
             'label' => 'Videos',
             'url' => ['/video/index']
-        ],
-        [
-            'label' => 'Comments',
-            'url' => ['/comment/index']
         ]
     ]
 ]) ?>
