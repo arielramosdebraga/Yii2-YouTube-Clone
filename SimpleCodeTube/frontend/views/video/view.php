@@ -38,15 +38,38 @@ $this->title = $model->title . ' | ' . Yii::$app->name;
             </p>
             <?php echo Html::encode($model->description) ?>
         </div>
-        <div class="mt-5"></div>
+        <div class="comments mt-5">
+            <h4 class="mb-3"> <span id="comment-count"><?php echo $model->getComments()->count() ?></span> Comments</h4>
+            <div class="create-comment mb-4">
+                <div class="media">
+                    <img class="mr-3 comment-avatar" src="/img/avatar.svg" alt="">
+                    <div class="media-body">
+                        <?php
+                            echo $this->render('_comment_create', [
+                                'model' => $model,
+                            ]);
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div id="comments-wrapper" class="comments-wrapper">
+                <?php foreach ($comments as $comment) {
+                    echo $this->render('_comment_item', [
+                        'model' => $comment,
+                    ]);
+                } ?>
+            </div>
+        </div>
     </div>
     <div class="col-sm-4">
         <?php foreach ($similarVideos as $similarVideo): ?>
             <div class="d-flex">
                 <div class="flex-shrink-0">
-                    <div class="embed-responsive embed-responsive-16by9 mr-2" style="width: 250px">
-                        <video class="embed-responsive-item" poster="<?php echo $similarVideo->getThumbnailLink() ?>" src="<?php echo $similarVideo->getVideoLink() ?>"></video>
-                    </div>
+                    <a href="<?php echo Url::to(['/video/view', 'id' => $similarVideo->video_id]) ?>">
+                        <div class="embed-responsive embed-responsive-16by9 mr-2" style="width: 250px">
+                            <video class="embed-responsive-item" poster="<?php echo $similarVideo->getThumbnailLink() ?>" src="<?php echo $similarVideo->getVideoLink() ?>"></video>
+                        </div>
+                    </a>
                 </div>
                 <div class="flex-grow-1 ms-3">
                     <h4 class="m-0"><?php echo $similarVideo->title ?></h4>
