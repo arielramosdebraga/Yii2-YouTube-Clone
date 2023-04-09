@@ -1,5 +1,5 @@
 <p align="center">
-    <h3 align="center">YouTube Clone with Yii2 (2.0.47) PHP (8.1.0) Framework</h3>
+    <h1 align="center">YouTube Clone with Yii2 (2.0.47) PHP (8.1.0) Framework</h1>
     <br>
 </p>
 
@@ -16,7 +16,7 @@ Funcionalidades
     - Número total de visualizações
     - Número total de inscritos
     - Últimos inscritos
- - Visualização de vídeos
+ - Visualização de vídeos e cadastro de comentários
  - Deixar um like ou dislike
  - Procurar vídeos semelhantes
  - Página do canal
@@ -25,8 +25,4 @@ Funcionalidades
  - Envio de e-mail quando o usuário se inscreve no canal
  - Pesquisa global para pesquisar vídeos por título, descrição ou tags
  - Página de histórico
-
-<br>
-<p align="center">
-    <h3 align="center" style="color: red;">Em desenvolvimento</h3>
-</p>
+ - Página para visualização dos comentários
